@@ -1,7 +1,7 @@
 import { serve } from "@hono/node-server";
 import { apiReference } from "@scalar/hono-api-reference";
 import { Hono } from "hono";
-import { openAPISpecs, resolve } from "hono-openapi";
+import { openAPISpecs, resolver } from "hono-openapi";
 import { z } from "zod";
 import routes from "./routes";
 
@@ -32,7 +32,7 @@ app.get(
             description: "Zod Error",
             content: {
               "application/json": {
-                schema: resolve(
+                schema: resolver(
                   z
                     .object({
                       status: z.literal(400),
